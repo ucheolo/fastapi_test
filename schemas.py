@@ -2,15 +2,15 @@ from pydantic import BaseModel
 from datetime import datetime
 
 class UserBase(BaseModel):
-    id: int
     name: str
     email: str
 
 class UserCreate(UserBase):
-    created_at: datetime
-
-class UserResponse(UserBase):
     pass
 
+class UserResponse(UserBase):
+    id: int
+    created_at: datetime
+
     class Config:
-        orm_mode = True
+        from_attributes = True  # orm_mode 대신 사용
